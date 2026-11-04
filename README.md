@@ -41,13 +41,9 @@ Prefer everything at once? Use **Code → Download ZIP** on the repository page.
 | Android | Open the downloaded file with Chrome from your Files or Downloads app. |
 | iPhone and iPad | Safari can't open a downloaded HTML file directly, so open it from a web link instead (see below). Then tap **Share → Add to Home Screen** for a full-screen view with no browser bars. |
 
+WebLink: https://vy199901.github.io/FlipClock/
+
 Good to know:
 - The Fullscreen button isn't supported on iPhone Safari, so use Add to Home Screen there.
 - Keep-awake needs a recent browser (Chrome, Edge, Firefox, or Safari 16.4 and later). If your screen still dims, set Auto-Lock or Sleep to Never in your device settings.
 
-### Host it with GitHub Pages (best for iPhone and iPad)
-
-1. In your repository, go to **Settings → Pages**.
-2. Under **Source**, choose **Deploy from a branch**, pick `main` and `/ (root)`, then **Save**.
-3. After a minute, your clock is live at `https://<your-username>.github.io/<repository-name>/flip-clock.html`.
-4. Open that link on any device and use **Add to Home Screen** to keep it like an app.
