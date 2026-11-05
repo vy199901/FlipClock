@@ -25,7 +25,7 @@
     --cap:38;             /* max card height, as a share of screen height (vh) */
     --wd:2.3;             /* portrait width budget: card widths per row */
     --pad:1;              /* portrait room kept for the AM/PM card */
-
+ 
     --bg:#ebeae6;
     --t-bg:linear-gradient(#ffffff,#f1f1ee);
     --b-bg:linear-gradient(#e9e9e5,#dcdcd7);
@@ -34,7 +34,7 @@
     --split:rgba(0,0,0,.2);
     --shadow:0 1px 2px rgba(0,0,0,.06),0 16px 36px rgba(0,0,0,.13);
     --shade:.3;
-
+ 
     --ui-bg:rgba(250,250,248,.82);
     --ui-fg:#1d1d1f;
     --ui-dim:#6b6b70;
@@ -44,13 +44,13 @@
     --field:#f1f1ee;
     --accent:#1d1d1f;
     --accent-fg:#ffffff;
-
+ 
     box-sizing:border-box;
     padding-top:env(safe-area-inset-top,0px);
     padding-bottom:env(safe-area-inset-bottom,0px);
   }
   @supports (height:1dvh){ :root{ --vh:1dvh; } }
-
+ 
   @media (prefers-color-scheme:dark){
     :root:not([data-theme="light"]){
       --bg:#000000;
@@ -96,7 +96,7 @@
   html.no-h{ --units:5; --rows:2; --cap:42; --wd:2.1; --pad:0; }
   /* Countdown shorter than 1 minute: show only the seconds cards, bigger still */
   html.only-s{ --units:2.6; --rows:1; --cap:42; --wd:2.1; --pad:0; }
-
+ 
   /* ---------- Base ---------- */
   html{ height:100%; overscroll-behavior:none; scroll-padding-top:env(safe-area-inset-top,0px); }
   body{
@@ -111,13 +111,13 @@
   }
   button{ font:inherit; color:inherit; }
   :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
-
+ 
   .stage{
     height:100%; display:flex; align-items:center; justify-content:center;
     cursor:pointer; user-select:none; -webkit-user-select:none;
     position:relative; z-index:1;
   }
-
+ 
   /* ---------- Background doodles (line art, almost blended into the background) ---------- */
   .doodles{
     position:fixed; top:0; right:0; bottom:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none;
@@ -138,7 +138,7 @@
   .doodles .green{ stroke:#2fb36d; } .doodles .fgreen{ fill:#2fb36d; } .doodles .fgreen2{ fill:#7cc84a; }
   .doodles .nf{ fill:none; }
   .doodles .ns{ stroke:none; }
-
+ 
   /* ---------- Clock layout ---------- */
   .clock{
     --w:min(calc(92vw / var(--units)), calc(var(--vh) * var(--cap)));
@@ -149,7 +149,7 @@
   .group{ display:flex; gap:calc(var(--w) * .06); }
   html.no-sec .g-s{ display:none; }
   html.no-h .g-h, html.only-s .g-h, html.only-s .g-m{ display:none; }
-
+ 
   /* Portrait screens: stack hours / minutes / seconds so the cards stay large */
   @media (max-aspect-ratio:1/1){
     .clock{
@@ -162,7 +162,7 @@
       padding:calc(var(--w) * .5 * var(--pad)) 0;
     }
   }
-
+ 
   /* ---------- Flip card ---------- */
   .flip{
     --fw:var(--w);
@@ -191,7 +191,7 @@
     .ampm{ left:auto; right:0; top:calc(var(--w) * .03); }
   }
   body.is-cd .ampm{ visibility:hidden; }
-
+ 
   .p{ position:absolute; left:0; width:100%; height:50%; overflow:hidden; }
   .p.t{ top:0; background:var(--t-bg); color:var(--t-fg); border-radius:var(--r) var(--r) 0 0; }
   .p.b{ bottom:0; background:var(--b-bg); color:var(--b-fg); border-radius:0 0 var(--r) var(--r); }
@@ -203,14 +203,14 @@
   .p.t span{ top:0; }
   .p.b span{ bottom:0; }
   .p::after{ content:""; position:absolute; top:0; right:0; bottom:0; left:0; background:#000; opacity:0; pointer-events:none; }
-
+ 
   .split{
     position:absolute; left:0; right:0; top:50%; z-index:5;
     height:max(2px, calc(var(--fh) * .007));
     transform:translateY(-50%);
     background:var(--split);
   }
-
+ 
   /* The two moving flaps only exist while a flip is running */
   .f{ display:none; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
   .flipping .f{ display:block; }
@@ -224,12 +224,12 @@
   @keyframes flapBottom{ from{ transform:rotateX(90deg); } to{ transform:rotateX(0); } }
   @keyframes shadeIn{ from{ opacity:0; } to{ opacity:var(--shade); } }
   @keyframes shadeOut{ from{ opacity:var(--shade); } to{ opacity:0; } }
-
+ 
   /* Countdown finished: the whole screen flashes black and white (once per second) */
   .flash{ position:fixed; top:0; right:0; bottom:0; left:0; z-index:0; pointer-events:none; display:none; background:#000; }
   body.alarm .flash{ display:block; animation:flashBW 1s steps(1,end) infinite; }
   @keyframes flashBW{ 0%,100%{ background:#000; } 50%{ background:#fff; } }
-
+ 
   /* ---------- Ribbon ---------- */
   .ribbon{
     position:fixed; left:0; right:0; bottom:0; z-index:20;
@@ -248,7 +248,7 @@
   .rg{ display:flex; align-items:center; gap:6px; }
   body.is-clock .only-cd{ display:none; }
   body.is-cd .only-clock{ display:none; }
-
+ 
   .btn{
     display:flex; align-items:center; gap:9px;
     padding:10px 14px; border:1px solid transparent; border-radius:10px;
@@ -263,13 +263,13 @@
   .btn:hover{ background:var(--ui-hover); }
   .btn.active, .btn[aria-pressed="true"]{ background:var(--ui-hover); border-color:var(--ui-line); }
   .btn:disabled{ opacity:.35; pointer-events:none; }
-
+ 
   @media (max-width:640px){
     .ribbon{ padding-left:6px; padding-right:6px; gap:4px; }
     .rg{ gap:2px; }
     .btn{ flex-direction:column; gap:5px; padding:8px 6px; min-width:50px; font-size:10.5px; }
   }
-
+ 
   /* ---------- Settings popover ---------- */
   .btn[aria-expanded="true"]{ background:var(--ui-hover); border-color:var(--ui-line); }
   .settings{
@@ -308,7 +308,7 @@
   .settings input[type="range"]{ width:100%; margin:6px 0 2px; accent-color:var(--accent); cursor:pointer; }
   .settings .act.wide{ width:100%; margin-top:10px; }
   @media (max-width:640px){ .settings{ right:8px; } }
-
+ 
   /* ---------- Countdown dialog ---------- */
   .overlay{
     position:fixed; top:0; right:0; bottom:0; left:0; z-index:30;
@@ -356,7 +356,7 @@
   .act:hover{ background:var(--ui-hover); }
   .act.primary{ background:var(--accent); color:var(--accent-fg); border-color:transparent; }
   .act.primary:hover{ opacity:.88; }
-
+ 
   /* ---------- Hint & toast ---------- */
   .hint{
     position:fixed; left:50%; bottom:calc(26px + env(safe-area-inset-bottom,0px));
@@ -378,7 +378,7 @@
     transition:opacity .25s, transform .25s;
   }
   .toast.show{ opacity:1; transform:translate(-50%,0); }
-
+ 
   @media (prefers-reduced-motion:reduce){
     .hint{ animation:none; }
     body.alarm .flash{ animation:none; display:none; }
@@ -387,7 +387,7 @@
 </style>
 </head>
 <body class="is-clock">
-
+ 
 <svg class="doodles" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
   <defs>
     <g id="petal" class="sa">
@@ -489,7 +489,7 @@
   <g id="doodle-layer"></g>
 </svg>
 <div class="flash" aria-hidden="true"></div>
-
+ 
 <main class="stage" id="stage" aria-label="Flip clock">
   <div class="clock" id="clock">
     <div class="group g-h" id="g-h"></div>
@@ -497,10 +497,10 @@
     <div class="group g-s" id="g-s"></div>
   </div>
 </main>
-
+ 
 <div class="hint" id="hint">Tap anywhere for options</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
+ 
 <div class="overlay" id="overlay" hidden>
   <div class="panel" role="dialog" aria-modal="true" aria-labelledby="panel-title">
     <h2 id="panel-title">Set countdown</h2>
@@ -522,7 +522,7 @@
     </div>
   </div>
 </div>
-
+ 
 <nav class="ribbon" id="ribbon" aria-label="Controls" aria-hidden="true">
   <div class="rg">
     <button type="button" class="btn active" id="b-clock">
@@ -534,7 +534,7 @@
       <span id="cd-label">Countdown</span>
     </button>
   </div>
-
+ 
   <div class="rg">
     <button type="button" class="btn only-cd" id="b-play">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path id="play-path" d="M8 5v14l11-7z"/></svg>
@@ -545,7 +545,7 @@
       <span>Reset</span>
     </button>
   </div>
-
+ 
   <div class="rg">
     <button type="button" class="btn" id="b-fs">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path id="fs-path" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
@@ -575,22 +575,22 @@
     <button type="button" class="act wide" id="shuffle">Shuffle doodles</button>
   </div>
 </nav>
-
+ 
 <script>
 (function(){
   'use strict';
-
+ 
   var $ = function(id){ return document.getElementById(id); };
   var root = document.documentElement;
   var reduced = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
   var FLIP_MS = 540;
-
+ 
   /* ---------- Saved preferences (safe if storage is unavailable) ---------- */
   var store = {
     get: function(k){ try { return localStorage.getItem('flipclock:' + k); } catch (e) { return null; } },
     set: function(k, v){ try { localStorage.setItem('flipclock:' + k, v); } catch (e) {} }
   };
-
+ 
   /* ---------- Theme ---------- */
   var themeMeta = $('theme-color');
   function effectiveTheme(){
@@ -618,7 +618,7 @@
   }
   $('th-dark').addEventListener('click', function(){ setTheme('dark'); });
   $('th-light').addEventListener('click', function(){ setTheme('light'); });
-
+ 
   /* ---------- Flip card ---------- */
   function Flip(parent, extraClass){
     this.el = document.createElement('div');
@@ -659,7 +659,7 @@
     var self = this;
     this.timer = setTimeout(function(){ self.finish(); }, FLIP_MS);
   };
-
+ 
   var flips = [];
   ['g-h', 'g-m', 'g-s'].forEach(function(id){
     var g = $(id);
@@ -667,13 +667,13 @@
     flips.push(new Flip(g));
   });
   var ampm = new Flip($('clock'), 'ampm');
-
+ 
   /* ---------- State ---------- */
   var state = { mode: 'clock', showSeconds: store.get('seconds') !== '0' };
   var cd = { status: 'idle', total: 0, remaining: 0, endAt: 0 };   // total in seconds, remaining in ms
-
+ 
   function pad(n){ return (n < 10 ? '0' : '') + n; }
-
+ 
   function render(){
     var h, m, s;
     if (state.mode === 'clock') {
@@ -688,7 +688,7 @@
     var str = pad(h) + pad(m) + pad(s);
     for (var i = 0; i < 6; i++) flips[i].set(str.charAt(i));
   }
-
+ 
   function syncUI(){
     var isCd = state.mode === 'countdown';
     document.body.classList.toggle('is-cd', isCd);
@@ -702,7 +702,7 @@
     root.classList.toggle('no-h', cdSet && cd.total < 3600);
     root.classList.toggle('only-s', cdSet && cd.total < 60);
     $('sw-sec').setAttribute('aria-checked', String(state.showSeconds));
-
+ 
     var st = cd.status;
     $('b-play').disabled = (st === 'idle');
     $('b-reset').disabled = (st === 'idle' || st === 'ready');
@@ -710,9 +710,9 @@
     $('play-label').textContent =
       st === 'running' ? 'Pause' : st === 'paused' ? 'Resume' : st === 'done' ? 'Restart' : 'Start';
   }
-
+ 
   function setMode(m){ state.mode = m; syncUI(); render(); }
-
+ 
   /* ---------- Ribbon & hint ---------- */
   var ribbon = $('ribbon');
   function setRibbon(on){
@@ -728,7 +728,7 @@
     setRibbon(!ribbon.classList.contains('show'));
   });
   ribbon.addEventListener('click', function(){ stopAlarm(); });
-
+ 
   var toastTimer = null;
   function toast(msg){
     var t = $('toast');
@@ -737,7 +737,7 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 4200);
   }
-
+ 
   /* ---------- Mode buttons ---------- */
   $('b-clock').addEventListener('click', function(){ setMode('clock'); });
   $('b-cd').addEventListener('click', function(){
@@ -753,10 +753,10 @@
     store.set('seconds', state.showSeconds ? '1' : '0');
     syncUI();
   });
-
+ 
   /* ---------- Countdown ---------- */
   var overlay = $('overlay'), inH = $('in-h'), inM = $('in-m'), inS = $('in-s'), errEl = $('err');
-
+ 
   function setFields(sec){
     inH.value = Math.floor(sec / 3600);
     inM.value = Math.floor((sec % 3600) / 60);
@@ -794,7 +794,7 @@
     setRibbon(false);
     syncUI(); render();
   }
-
+ 
   $('start').addEventListener('click', submitPanel);
   $('cancel').addEventListener('click', cancelPanel);
   overlay.addEventListener('click', function(e){ if (e.target === overlay) cancelPanel(); });
@@ -809,7 +809,7 @@
       errEl.textContent = '';
     });
   });
-
+ 
   $('b-play').addEventListener('click', function(){
     unlockAudio();
     if (cd.status === 'running') {
@@ -829,7 +829,7 @@
     cd.remaining = cd.total * 1000;
     syncUI(); render();
   });
-
+ 
   /* ---------- Alert when the countdown ends ---------- */
   var actx = null;
   function unlockAudio(){
@@ -875,7 +875,7 @@
     if (state.mode === 'countdown') setRibbon(true);
     toast(reduced ? 'Time’s up.' : 'Time’s up. Tap anywhere to stop the flashing.');
   }
-
+ 
   /* ---------- Fullscreen ---------- */
   var fsRoot = document.documentElement;
   var canFS = !!(fsRoot.requestFullscreen || fsRoot.webkitRequestFullscreen);
@@ -907,7 +907,7 @@
   $('b-fs').addEventListener('click', toggleFS);
   document.addEventListener('fullscreenchange', syncFS);
   document.addEventListener('webkitfullscreenchange', syncFS);
-
+ 
   /* ---------- Settings ---------- */
   var settingsEl = $('settings'), settingsBtn = $('b-settings'), settingsOpen = false;
   function openSettings(){
@@ -925,7 +925,7 @@
     if (settingsEl.contains(e.target) || settingsBtn.contains(e.target)) return;
     closeSettings();
   });
-
+ 
   var doodleSvg = document.querySelector('.doodles');
   var opEl = $('op'), opVal = $('op-val');
   function applyOpacity(p){
@@ -941,7 +941,7 @@
     applyOpacity(p);
     store.set('doodle', String(p));
   });
-
+ 
   /* ---------- Doodle background: random, never a grid ---------- */
   var PALETTE = ['#f0508f','#ff7a1a','#ffb703','#ef3e5c','#ff6b57','#2fb36d','#84cc16','#14b8a6','#0ea5e9','#3b82f6','#6366f1','#8b5cf6','#d946ef'];
   var WARM    = ['#f0508f','#ff7a1a','#ffb703','#ef3e5c','#ff6b57','#d946ef'];
@@ -961,7 +961,7 @@
     { id:'spark', w:3, r:8,  rot:45,  ax:0,  ay:0,  s0:.7,  s1:1.25 },
     { id:'dot',   w:3, r:5,  rot:0,   ax:0,  ay:0,  s0:.8,  s1:1.5 }
   ];
-
+ 
   function lighten(hex, t){
     var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
     r = Math.round(r + (255 - r) * t); g = Math.round(g + (255 - g) * t); b = Math.round(b + (255 - b) * t);
@@ -980,12 +980,12 @@
     else { var s = shuffle(PALETTE.slice(), rng); a = s[0]; b = s[1]; c = s[2]; }
     return { a: a, a2: lighten(a, .45), b: b, b2: lighten(b, .45), c: c, c2: lighten(c, .45) };
   }
-
+ 
   // Dart-throwing placement: random positions, but nothing touches or overlaps.
   function makeLayout(W, H, rng){
     var items = [], big = [], bag = [], i, j;
     var area = W * H;
-
+ 
     function nextBig(){
       if (!bag.length) {
         BIG.forEach(function(t){ for (var k = 0; k < t.w; k++) bag.push(t); });
@@ -1010,7 +1010,7 @@
                  col: pickColors(t.kind, rng) };
       big.push(it); items.push(it);
     }
-
+ 
     var wsum = 0; SMALL.forEach(function(s){ wsum += s.w; });
     function pickSmall(){
       var v = rng() * wsum;
@@ -1040,26 +1040,47 @@
     }
     return items;
   }
-
+ 
   var SVGNS = 'http://www.w3.org/2000/svg', XLINK = 'http://www.w3.org/1999/xlink';
   var doodleLayer = $('doodle-layer'), layoutSize = 0;
   function desiredSize(){
     return Math.min(2600, Math.max(800, window.innerWidth || 0, window.innerHeight || 0, screen.width || 0, screen.height || 0));
+  }
+  // Safari colours the hidden copies that <use> makes, but Chrome and Firefox do not apply page CSS to them,
+  // so the doodles looked grey there. Build ordinary SVG groups from the drawings instead; every browser
+  // colours those the same way.
+  var templates = {};
+  function expandNode(src){
+    var copy = src.cloneNode(true);
+    copy.removeAttribute('id');
+    Array.prototype.forEach.call(copy.querySelectorAll('use'), function(u){
+      var ref = u.getAttribute('href') || u.getAttributeNS(XLINK, 'href') || '';
+      var target = ref.charAt(0) === '#' ? document.getElementById(ref.slice(1)) : null;
+      var g = document.createElementNS(SVGNS, 'g');
+      var tr = u.getAttribute('transform');
+      if (tr) g.setAttribute('transform', tr);
+      if (target) g.appendChild(expandNode(target));
+      u.parentNode.replaceChild(g, u);
+    });
+    return copy;
+  }
+  function template(id){
+    if (!templates[id]) templates[id] = expandNode(document.getElementById(id));
+    return templates[id];
   }
   function buildDoodles(){
     layoutSize = desiredSize();
     var items = makeLayout(layoutSize, layoutSize, Math.random);
     var frag = document.createDocumentFragment();
     items.forEach(function(it){
-      var u = document.createElementNS(SVGNS, 'use');
-      u.setAttribute('href', '#' + it.id);
-      u.setAttributeNS(XLINK, 'xlink:href', '#' + it.id);
-      u.setAttribute('transform', 'translate(' + it.x.toFixed(1) + ' ' + it.y.toFixed(1) + ') rotate(' + it.rot.toFixed(1) +
+      var g = document.createElementNS(SVGNS, 'g');
+      g.setAttribute('transform', 'translate(' + it.x.toFixed(1) + ' ' + it.y.toFixed(1) + ') rotate(' + it.rot.toFixed(1) +
         ') scale(' + it.scale.toFixed(3) + ') translate(' + (-it.ax) + ' ' + (-it.ay) + ')');
       var c = it.col;
-      u.setAttribute('style', '--a:' + c.a + ';--a2:' + c.a2 + ';--b:' + c.b + ';--b2:' + c.b2 + ';--c:' + c.c + ';--c2:' + c.c2);
-      if (it.cls) u.setAttribute('class', it.cls);
-      frag.appendChild(u);
+      g.setAttribute('style', '--a:' + c.a + ';--a2:' + c.a2 + ';--b:' + c.b + ';--b2:' + c.b2 + ';--c:' + c.c + ';--c2:' + c.c2);
+      if (it.cls) g.setAttribute('class', it.cls);
+      g.appendChild(template(it.id).cloneNode(true));
+      frag.appendChild(g);
     });
     doodleLayer.textContent = '';
     doodleLayer.appendChild(frag);
@@ -1068,8 +1089,8 @@
   $('shuffle').addEventListener('click', buildDoodles);
   // If the window ever grows past the area we scattered doodles over, scatter again.
   window.addEventListener('resize', function(){ if (desiredSize() > layoutSize) buildDoodles(); });
-
-
+ 
+ 
   /* ---------- Keyboard ---------- */
   document.addEventListener('keydown', function(e){
     if (alarmOn) stopAlarm();
@@ -1079,7 +1100,7 @@
     if (tag === 'INPUT') return;
     if (e.key === 'f' || e.key === 'F') toggleFS();
   });
-
+ 
   /* ---------- Keep the screen awake ---------- */
   var wakeLock = null, wakePending = false, wakeWarned = false;
   function warnWake(fromTap){
@@ -1107,7 +1128,7 @@
   // Some browsers only grant it after a tap, so try again on the first touch or click.
   document.addEventListener('pointerdown', function(){ requestWake(true); });
   requestWake(false);
-
+ 
   /* ---------- Main loop ---------- */
   function tick(){
     if (cd.status === 'running') {
@@ -1123,7 +1144,7 @@
     }
     render();
   }
-
+ 
   syncUI();
   syncFS();
   render();
